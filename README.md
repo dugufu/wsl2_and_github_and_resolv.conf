@@ -1,6 +1,7 @@
- ### wsl2 （Ubuntu·）auto generate IP address 这个每次搞得我要直接去更改registry 永久修改resolv.conf文件配置
- ### wsl2 github unable to access的问题 ： 这里建议使用SSH 而不是HTTPS来clone project or push project 
+ ### 第一个问题 :wsl2 （Ubuntu·）auto generate IP address 这个每次搞得我要直接去更改registry 永久修改resolv.conf文件配置
+ ### 第二个问题 :wsl2 github unable to access的问题 ： 这里建议使用SSH 而不是HTTPS来clone project or push project 
 
+#第一个问题
 <h1>那些wsl2 被啊三坑的洞 永久修改resolv.conf文件配置</h1>
 
 1. 打开 powershell 输入  
@@ -85,3 +86,68 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4 
 ```
 # 恭喜你 成功了 !
+
+---
+---
+
+#第二个问题
+##:wsl2 github unable to access的问题 ： 这里建议使用SSH 而不是HTTPS来clone project or push project 
+
+以下操作是通过Ubuntu来生成ssh key<br/> 
+然后绑定去github account
+
+1. 先检查有没有ssh key
+```
+cd ~/.ssh
+ls
+```
+
+如果有 <br/><br/>
+![image](https://user-images.githubusercontent.com/49250073/229813034-167f73b6-dcd6-49ee-b418-2b9c3536b795.png)
+
+---
+
+2. 如果没有 <br/>
+```
+ssh-keygen -t rsa -C "ccr@gmail.com"  //Enter your github email
+//输入后, 一直Enter,Enter, Enter...
+```
+
+---
+
+3. 打印ssh key
+```
+cd ~/.ssh
+cat id_rsa.pub
+```
+Copy ssh key <br/>
+<br/><br/>
+![image](https://user-images.githubusercontent.com/49250073/229814827-e8dbfb78-db74-4431-aa4f-8fcb1496cd29.png)
+
+---
+
+4. setting up ssh on github<br/>
+
+A <br/>
+![image](https://user-images.githubusercontent.com/49250073/229815609-10f96d8e-f903-4502-a5a5-9c500406c2ee.png) <br/>
+B <br/>
+![image](https://user-images.githubusercontent.com/49250073/229815750-8e3aa875-639b-4bad-b98a-1e5c299a2b7e.png)<br/>
+C <br/>
+![image](https://user-images.githubusercontent.com/49250073/229815863-29808d8c-8fc0-4352-b85d-b288e4afaf6a.png)<br/>
+D <br/>
+![image](https://user-images.githubusercontent.com/49250073/229815988-e6c57386-c7b1-41d3-89c2-1136564a5308.png)<br/>
+
+5. 验证account是不是成功
+```
+ssh -T git@github.com
+```
+
+---
+
+6. 验证成功信息
+![image](https://user-images.githubusercontent.com/49250073/229816394-9f1ac0ef-7db7-47b7-9ee7-778cc9e4ac6a.png)
+
+
+
+
+
